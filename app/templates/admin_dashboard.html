@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block title %}Admin Dashboard - SOS Requests{% endblock %}
+
+{% block content %}
+<h2>🛠 All SOS Requests</h2>
+
+<table class="table table-hover mt-3">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>User</th>
+            <th>Location</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sos in sos_requests %}
+        <tr>
+            <td>{{ sos.id }}</td>
+            <td>{{ sos.user.name }}</td>
+            <td>{{ sos.location }}</td>
+            <td>{{ sos.description }}</td>
+            <td>{{ sos.status }}</td>
+            <td>
+                {% if sos.status == 'Pending' %}
+                <form method="POST" action="{{ url_for('admin.update_request_status', request_id=sos.id) }}">
+                    <button name="status" value="resolved" class="btn btn-success btn-sm">Resolve</button>
+                    <button name="status" value="rejected" class="btn btn-danger btn-sm">Reject</button>
+                </form>
+                {% else %}
+                <span class="text-muted">No actions</span>
+                {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="mt-4">
+    <a href="{{ url_for('admin.manage_resources') }}" class="btn btn-outline-primary">Manage Resources</a>
+    <a href="{{ url_for('admin.manage_shelters') }}" class="btn btn-outline-secondary">Manage Shelters</a>
+</div>
+{% endblock %}

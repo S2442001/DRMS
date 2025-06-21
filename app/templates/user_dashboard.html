@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block title %}Your SOS Requests{% endblock %}
+
+{% block content %}
+<h2>📋 Your SOS Requests</h2>
+
+{% if sos_requests %}
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sos in sos_requests %}
+            <tr>
+                <td>{{ sos.id }}</td>
+                <td>{{ sos.location }}</td>
+                <td>{{ sos.description }}</td>
+                <td>
+                    {% if sos.status == 'Pending' %}
+                        <span class="badge bg-warning text-dark">{{ sos.status }}</span>
+                    {% elif sos.status == 'Resolved' %}
+                        <span class="badge bg-success">{{ sos.status }}</span>
+                    {% else %}
+                        {{ sos.status }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>You have not submitted any SOS requests yet.</p>
+{% endif %}
+
+<a href="{{ url_for('sos.create_sos') }}" class="btn btn-primary mt-3">+ New SOS Request</a>
+{% endblock %}

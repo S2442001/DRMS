@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block title %}Manage Resources{% endblock %}
+
+{% block content %}
+<h2>📦 Manage Resources</h2>
+
+<form method="POST" class="mb-4">
+    {{ form.hidden_tag() }}
+
+    <div class="mb-3">
+        {{ form.type.label(class="form-label") }}
+        {{ form.type(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.location.label(class="form-label") }}
+        {{ form.location(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.quantity.label(class="form-label") }}
+        {{ form.quantity(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+
+<hr>
+<h4>Existing Resources</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Location</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for r in resources %}
+        <tr>
+            <td>{{ r.type }}</td>
+            <td>{{ r.location }}</td>
+            <td>{{ r.quantity }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

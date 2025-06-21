@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block title %}Manage Shelters{% endblock %}
+
+{% block content %}
+<h2>🏕️ Manage Shelters</h2>
+
+<form method="POST" class="mb-4">
+    {{ form.hidden_tag() }}
+
+    <div class="mb-3">
+        {{ form.name.label(class="form-label") }}
+        {{ form.name(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.capacity.label(class="form-label") }}
+        {{ form.capacity(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.available_beds.label(class="form-label") }}
+        {{ form.available_beds(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.location.label(class="form-label") }}
+        {{ form.location(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+
+<hr>
+<h4>Registered Shelters</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Capacity</th>
+            <th>Available Beds</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in shelters %}
+        <tr>
+            <td>{{ s.name }}</td>
+            <td>{{ s.capacity }}</td>
+            <td>{{ s.available_beds }}</td>
+            <td>{{ s.location }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{%block title %} Create SOS Request {% endblock %}
+{%block content %}
+<h2>🚨 Submit an SOS Request</h2>
+<form method="POST">
+{{form.hidden_tag()}}
+<div class="mb-3">
+    {{form.location.label(class="form-label")}}
+    {{form.location(class="form-control")}}
+            {% for error in form.location.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+</div>
+ <div class="mb-3">
+        {{ form.description.label(class="form-label") }}
+        {{ form.description(class="form-control", rows="4") }}
+        {% for error in form.description.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    {{ form.submit(class="btn btn-danger") }}
+</form>
+{% endblock %}
