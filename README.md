@@ -31,22 +31,19 @@ A Flask-based web application for coordinating SOS requests, managing shelters a
 ##  Getting Started
 
 1. Clone the repo:
-   
-git clone https://github.com/yourusername/drms.git
-cd drms
+   git clone https://github.com/yourusername/drms.git
+   cd drms
 
 2. Create & activate virtuaenv
-python -m venv venv
-venv\Scripts\activate   # On Windows
-source venv/bin/activate   # On Linux/Mac
+   python -m venv venv
+   venv\Scripts\activate   # On Windows
+   source venv/bin/activate   # On Linux/Mac
 
-3.  Install Dependencies
+3. Install Dependencies
+   pip install -r requirements.txt
 
-pip install -r requirements.txt
-
-4. Run the app
-
-python run.py
+4.  Run the app
+   python run.py
 
 #### Future Enhancements for DRMS:
 1. Volunteer Management System
